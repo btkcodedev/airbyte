@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reference timezones Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": ["null", "number"]
+    },
+    "offset": {
+      "type": ["null", "number"]
+    },
+    "timezone": {
+      "type": ["null", "string"]
+    },
+    "description": {
+      "type": ["null", "string"]
+    },
+    "countryid": {
+      "type": ["null", "number"]
+    },
+    "datetimeformatid": {
+      "type": ["null", "number"]
+    },
+    "numberformatid": {
+      "type": ["null", "number"]
+    },
+    "timezoneid": {
+      "type": ["null", "number"]
+    }
+  }
+}

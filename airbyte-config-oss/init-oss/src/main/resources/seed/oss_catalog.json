@@ -20304,145 +20304,106 @@
     "public": true,
     "custom": false,
     "releaseStage": "alpha"
-  }, {
-    "sourceDefinitionId": "5cb7e5fe-38c2-11ec-8d3d-0242ac130003",
-    "name": "Pinterest",
-    "dockerRepository": "airbyte/source-pinterest",
-    "dockerImageTag": "0.2.4",
-    "documentationUrl": "https://docs.airbyte.com/integrations/sources/pinterest",
-    "icon": "pinterest.svg",
+  }, 
+  {
+    "sourceDefinitionId": "69d9eb65-8026-47dc-baf1-e4bf67901fd6",
+    "name": "Pexels API",
+    "dockerRepository": "airbyte/source-pexels-api",
+    "dockerImageTag": "0.1.0",
+    "documentationUrl": "https://docs.airbyte.com/integrations/sources/pexels-api",
+    "icon": "pexels.svg",
     "sourceType": "api",
     "spec": {
-      "documentationUrl": "https://docs.airbyte.com/integrations/sources/pinterest",
+      "documentationUrl": "https://docs.airbyte.com/integrations/sources/pexels-api",
       "connectionSpecification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
-        "title": "Pinterest Spec",
+        "title": "Pexel API Spec",
         "type": "object",
-        "required": [ "start_date" ],
+        "required": [ "api_key", "query" ],
         "additionalProperties": true,
         "properties": {
-          "start_date": {
+          "api_key": {
+            "title": "API Key from the pexels website",
             "type": "string",
-            "title": "Start Date",
-            "description": "A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (914 days from today).",
-            "examples": [ "2022-07-28" ]
+            "description": "API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.",
+            "airbyte_secret": true
           },
-          "status": {
-            "title": "Status",
-            "description": "Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.",
-            "type": [ "array", "null" ],
-            "items": {
-              "type": "string",
-              "enum": [ "ACTIVE", "PAUSED", "ARCHIVED" ]
-            },
-            "uniqueItems": true
+          "query": {
+            "title": "Specific query for the search",
+            "type": "string",
+            "description": "Optional, the search query, Example Ocean, Tigers, Pears, etc.",
+            "examples": [ "people", "oceans" ]
           },
-          "credentials": {
-            "title": "Authorization Method",
-            "type": "object",
-            "oneOf": [ {
-              "type": "object",
-              "title": "OAuth2.0",
-              "required": [ "auth_method", "refresh_token" ],
-              "properties": {
-                "auth_method": {
-                  "type": "string",
-                  "const": "oauth2.0",
-                  "order": 0
-                },
-                "client_id": {
-                  "type": "string",
-                  "title": "Client ID",
-                  "description": "The Client ID of your OAuth application",
-                  "airbyte_secret": true
-                },
-                "client_secret": {
-                  "type": "string",
-                  "title": "Client Secret",
-                  "description": "The Client Secret of your OAuth application.",
-                  "airbyte_secret": true
-                },
-                "refresh_token": {
-                  "type": "string",
-                  "title": "Refresh Token",
-                  "description": "Refresh Token to obtain new Access Token, when it's expired.",
-                  "airbyte_secret": true
-                }
-              }
-            }, {
-              "type": "object",
-              "title": "Access Token",
-              "required": [ "auth_method", "access_token" ],
-              "properties": {
-                "auth_method": {
-                  "type": "string",
-                  "const": "access_token",
-                  "order": 0
-                },
-                "access_token": {
-                  "type": "string",
-                  "title": "Access Token",
-                  "description": "The Access Token to make authenticated requests.",
-                  "airbyte_secret": true
-                }
-              }
-            } ]
+          "orientation": {
+            "title": "Specific orientation for the search",
+            "type": "string",
+            "description": "Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square",
+            "examples": [ "square", "landscape" ]
+          },
+          "size": {
+            "title": "Specific size for the search",
+            "type": "string",
+            "description": "Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).",
+            "examples": [ "large", "small" ]
+          },
+          "color": {
+            "title": "Specific color for the search",
+            "type": "string",
+            "description": "Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.",
+            "examples": [ "red", "orange" ]
+          },
+          "locale": {
+            "title": "Specific locale for the search",
+            "type": "string",
+            "description": "Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.",
+            "examples": [ "en-US", "pt-BR" ]
           }
         }
       },
       "supportsNormalization": false,
       "supportsDBT": false,
-      "supported_destination_sync_modes": [ ],
-      "advanced_auth": {
-        "auth_flow_type": "oauth2.0",
-        "predicate_key": [ "credentials", "auth_method" ],
-        "predicate_value": "oauth2.0",
-        "oauth_config_specification": {
-          "complete_oauth_output_specification": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "refresh_token": {
-                "type": "string",
-                "path_in_connector_config": [ "credentials", "refresh_token" ]
-              }
-            }
-          },
-          "complete_oauth_server_input_specification": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "client_id": {
-                "type": "string"
-              },
-              "client_secret": {
-                "type": "string"
-              }
-            }
-          },
-          "complete_oauth_server_output_specification": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "client_id": {
-                "type": "string",
-                "path_in_connector_config": [ "credentials", "client_id" ]
-              },
-              "client_secret": {
-                "type": "string",
-                "path_in_connector_config": [ "credentials", "client_secret" ]
-              }
-            }
+      "supported_destination_sync_modes": [ ]
+    },
+    "tombstone": false,
+    "public": true,
+    "custom": false,
+    "releaseStage": "alpha"
+  },
+  {
+    "sourceDefinitionId": "<To-Be-Given>",
+    "name": "Pingdom",
+    "dockerRepository": "airbyte/source-pingdom",
+    "dockerImageTag": "0.1.0",
+    "documentationUrl": "https://docs.airbyte.com/integrations/sources/pingdom",
+    "icon": "pingdom.svg",
+    "sourceType": "api",
+    "spec": {
+      "documentationUrl": "https://docs.airbyte.com/integrations/sources/pingdom",
+      "connectionSpecification": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "Pingdom Spec",
+        "type": "object",
+        "required": [ "api_key" ],
+        "additionalProperties": true,
+        "properties": {
+          "api_key": {
+            "title": "API Token from the pingdom website",
+            "type": "string",
+            "description": "API key is required to access pingdom api, For getting your's goto https://my.pingdom.com/app/api-tokens and create token for free.",
+            "airbyte_secret": true
           }
         }
-      }
+      },
+      "supportsNormalization": false,
+      "supportsDBT": false,
+      "supported_destination_sync_modes": [ ]
     },
     "tombstone": false,
     "public": true,
     "custom": false,
     "releaseStage": "generally_available",
     "allowedHosts": {
-      "hosts": [ "api.pinterest.com" ]
+      "hosts": [ "api.pingdom.com" ]
     }
   }, {
     "sourceDefinitionId": "d8286229-c680-4063-8c59-23b9b391c700",

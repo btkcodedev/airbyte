@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Maintenance Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": ["null", "number"]
+    },
+    "description": {
+      "type": ["null", "string"]
+    },
+    "from": {
+      "type": ["null", "number"]
+    },
+    "to": {
+      "type": ["null", "number"]
+    },
+    "duration": {
+      "type": ["null", "number"]
+    },
+    "durationunit": {
+      "type": ["null", "string"]
+    },
+    "recurrencetype": {
+      "type": ["null", "string"]
+    },
+    "repeatevery": {
+      "type": ["null", "number"]
+    },
+    "dayofweekinmonth": {
+      "type": ["null", "number"]
+    },
+    "effectiveto": {
+      "type": ["null", "number"]
+    },
+    "checks": {
+      "type": ["null", "object"],
+      "properties": {
+        "uptime": {
+          "type": ["null", "array"],
+          "items": {
+            "type": ["null", "number"]
+          }
+        },
+        "tms": {
+          "type": ["null", "array"],
+          "items": {
+            "type": ["null", "number"]
+          }
+        }
+      }
+    }
+  }
+}

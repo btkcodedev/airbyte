@@ -11570,6 +11570,24 @@
     supportsNormalization: false
     supportsDBT: false
     supported_destination_sync_modes: []
+- dockerImage: "airbyte/source-pingdom:0.1.0"
+  spec:
+    documentationUrl: "https://docs.airbyte.com/integrations/sources/pingdom"
+    connectionSpecification:
+      $schema: "http://json-schema.org/draft-07/schema#"
+      title: Pingdom Spec
+      type: object
+      required:
+        - api_key
+      additionalProperties: true
+      properties:
+        api_key:
+          type: string
+          description: The Pingdom API Key which is the token received from the dashboard settings (ref - https://my.pingdom.com/app/api-tokens)
+          airbyte_secret: true
+    supportsNormalization: false
+    supportsDBT: false
+    supported_destination_sync_modes: []
 - dockerImage: "airbyte/source-pinterest:0.2.4"
   spec:
     documentationUrl: "https://docs.airbyte.com/integrations/sources/pinterest"

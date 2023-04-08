@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reference phonecodes Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "countryid": {
+      "type": ["null", "number"]
+    },
+    "name": {
+      "type": ["null", "string"]
+    },
+    "phonecode": {
+      "type": ["null", "string"]
+    },
+    "iso": {
+      "type": ["null", "string"]
+    }
+  }
+}

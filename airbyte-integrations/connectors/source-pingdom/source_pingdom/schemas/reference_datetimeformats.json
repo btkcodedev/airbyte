@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reference datetimeformat Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": ["null", "number"]
+    },
+    "dateformat": {
+      "type": ["null", "string"]
+    },
+    "timeformat": {
+      "type": ["null", "string"]
+    },
+    "description": {
+      "type": ["null", "string"]
+    }
+  }
+}

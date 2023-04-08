@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Probes Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": ["null", "number"]
+    },
+    "country": {
+      "type": ["null", "string"]
+    },
+    "city": {
+      "type": ["null", "string"]
+    },
+    "name": {
+      "type": ["null", "string"]
+    },
+    "active": {
+      "type": ["null", "boolean"]
+    },
+    "hostname": {
+      "type": ["null", "string"]
+    },
+    "ip": {
+      "type": ["null", "string"]
+    },
+    "ipv6": {
+      "type": ["null", "string"]
+    },
+    "countryiso": {
+      "type": ["null", "string"]
+    },
+    "region": {
+      "type": ["null", "string"]
+    }
+  }
+}

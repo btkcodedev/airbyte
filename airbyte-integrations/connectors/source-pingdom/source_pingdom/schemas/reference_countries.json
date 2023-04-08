@@ -1,0 +1,223 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reference countries Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": ["null", "number"]
+    },
+    "name": {
+      "type": ["null", "string"]
+    },
+    "iso": {
+      "type": ["null", "string"]
+    },
+    "vatprefix": {
+      "type": ["null", "string"]
+    },
+    "states": {
+      "type": ["null", "object"],
+      "properties": {
+        "AL": {
+          "type": ["null", "string"]
+        },
+        "AK": {
+          "type": ["null", "string"]
+        },
+        "AZ": {
+          "type": ["null", "string"]
+        },
+        "AR": {
+          "type": ["null", "string"]
+        },
+        "CA": {
+          "type": ["null", "string"]
+        },
+        "CO": {
+          "type": ["null", "string"]
+        },
+        "CT": {
+          "type": ["null", "string"]
+        },
+        "DE": {
+          "type": ["null", "string"]
+        },
+        "DC": {
+          "type": ["null", "string"]
+        },
+        "FL": {
+          "type": ["null", "string"]
+        },
+        "GA": {
+          "type": ["null", "string"]
+        },
+        "HI": {
+          "type": ["null", "string"]
+        },
+        "ID": {
+          "type": ["null", "string"]
+        },
+        "IL": {
+          "type": ["null", "string"]
+        },
+        "IN": {
+          "type": ["null", "string"]
+        },
+        "IA": {
+          "type": ["null", "string"]
+        },
+        "KS": {
+          "type": ["null", "string"]
+        },
+        "KY": {
+          "type": ["null", "string"]
+        },
+        "LA": {
+          "type": ["null", "string"]
+        },
+        "ME": {
+          "type": ["null", "string"]
+        },
+        "MD": {
+          "type": ["null", "string"]
+        },
+        "MA": {
+          "type": ["null", "string"]
+        },
+        "MI": {
+          "type": ["null", "string"]
+        },
+        "MN": {
+          "type": ["null", "string"]
+        },
+        "MS": {
+          "type": ["null", "string"]
+        },
+        "MO": {
+          "type": ["null", "string"]
+        },
+        "MT": {
+          "type": ["null", "string"]
+        },
+        "NE": {
+          "type": ["null", "string"]
+        },
+        "NV": {
+          "type": ["null", "string"]
+        },
+        "NH": {
+          "type": ["null", "string"]
+        },
+        "NJ": {
+          "type": ["null", "string"]
+        },
+        "NM": {
+          "type": ["null", "string"]
+        },
+        "NY": {
+          "type": ["null", "string"]
+        },
+        "NC": {
+          "type": ["null", "string"]
+        },
+        "ND": {
+          "type": ["null", "string"]
+        },
+        "OH": {
+          "type": ["null", "string"]
+        },
+        "OK": {
+          "type": ["null", "string"]
+        },
+        "OR": {
+          "type": ["null", "string"]
+        },
+        "PA": {
+          "type": ["null", "string"]
+        },
+        "PR": {
+          "type": ["null", "string"]
+        },
+        "RI": {
+          "type": ["null", "string"]
+        },
+        "SC": {
+          "type": ["null", "string"]
+        },
+        "SD": {
+          "type": ["null", "string"]
+        },
+        "TN": {
+          "type": ["null", "string"]
+        },
+        "TX": {
+          "type": ["null", "string"]
+        },
+        "UT": {
+          "type": ["null", "string"]
+        },
+        "VT": {
+          "type": ["null", "string"]
+        },
+        "VI": {
+          "type": ["null", "string"]
+        },
+        "VA": {
+          "type": ["null", "string"]
+        },
+        "WA": {
+          "type": ["null", "string"]
+        },
+        "WV": {
+          "type": ["null", "string"]
+        },
+        "WI": {
+          "type": ["null", "string"]
+        },
+        "WY": {
+          "type": ["null", "string"]
+        },
+        "BC": {
+          "type": ["null", "string"]
+        },
+        "ON": {
+          "type": ["null", "string"]
+        },
+        "NL": {
+          "type": ["null", "string"]
+        },
+        "NS": {
+          "type": ["null", "string"]
+        },
+        "PE": {
+          "type": ["null", "string"]
+        },
+        "NB": {
+          "type": ["null", "string"]
+        },
+        "QC": {
+          "type": ["null", "string"]
+        },
+        "MB": {
+          "type": ["null", "string"]
+        },
+        "SK": {
+          "type": ["null", "string"]
+        },
+        "AB": {
+          "type": ["null", "string"]
+        },
+        "NT": {
+          "type": ["null", "string"]
+        },
+        "NU": {
+          "type": ["null", "string"]
+        },
+        "YT": {
+          "type": ["null", "string"]
+        }
+      }
+    }
+  }
+}

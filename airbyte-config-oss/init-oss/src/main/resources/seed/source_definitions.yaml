@@ -1512,6 +1512,14 @@
   icon: pexels.svg
   sourceType: api
   releaseStage: alpha
+- name: Pingdom
+  sourceDefinitionId: <To-Be-Given>
+  dockerRepository: airbyte/source-pingdom
+  dockerImageTag: 0.1.0
+  documentationUrl: https://docs.airbyte.com/integrations/sources/pingdom
+  icon: pingdom.svg
+  sourceType: api
+  releaseStage: alpha
 - name: Pinterest
   sourceDefinitionId: 5cb7e5fe-38c2-11ec-8d3d-0242ac130003
   dockerRepository: airbyte/source-pinterest

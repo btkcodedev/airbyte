@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Credits Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "checklimit": {
+      "type": ["null", "number"]
+    },
+    "availablechecks": {
+      "type": ["null", "number"]
+    },
+    "useddefault": {
+      "type": ["null", "number"]
+    },
+    "usedtransaction": {
+      "type": ["null", "number"]
+    },
+    "availablesms": {
+      "type": ["null", "number"]
+    },
+    "availablesmstests": {
+      "type": ["null", "number"]
+    },
+    "autofillsms": {
+      "type": ["null", "boolean"]
+    },
+    "autofillsms_amount": {
+      "type": ["null", "number"]
+    },
+    "autofillsms_when_left": {
+      "type": ["null", "number"]
+    },
+    "max_sms_overage": {
+      "type": ["null", "number"]
+    },
+    "availablerumsites": {
+      "type": ["null", "number"]
+    },
+    "usedrumsites": {
+      "type": ["null", "number"]
+    },
+    "maxrumfilters": {
+      "type": ["null", "number"]
+    },
+    "maxrumpageviews": {
+      "type": ["null", "number"]
+    },
+    "defaultchecklimit": {
+      "type": ["null", "number"]
+    },
+    "transactionchecklimit": {
+      "type": ["null", "number"]
+    },
+    "availabledefaultchecks": {
+      "type": ["null", "number"]
+    },
+    "availabletransactionchecks": {
+      "type": ["null", "number"]
+    },
+    "maxalertingfullusers": {
+      "type": ["null", "number"]
+    },
+    "availablealertingfullusers": {
+      "type": ["null", "number"]
+    }
+  }
+}
