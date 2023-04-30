@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Categories Schema",
+  "additionalProperties": true,
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": ["null", "string"]
+    },
+    "resource_uri": {
+      "type": ["null", "string"]
+    },
+    "name": {
+      "type": ["null", "string"]
+    },
+    "name_localized": {
+      "type": ["null", "string"]
+    },
+    "short_name": {
+      "type": ["null", "string"]
+    },
+    "short_name_localized": {
+      "type": ["null", "string"]
+    },
+    "subcategories": {
+      "type": ["null", "array"]
+    }
+  }
+}

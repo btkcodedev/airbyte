@@ -1,0 +1,97 @@
+diff --git a/airbyte-config-oss/init-oss/src/main/resources/seed/oss_catalog.json b/airbyte-config-oss/init-oss/src/main/resources/seed/oss_catalog.json
+index 0ca9fb2af5..e8909b6ebe 100644
+--- a/airbyte-config-oss/init-oss/src/main/resources/seed/oss_catalog.json
++++ b/airbyte-config-oss/init-oss/src/main/resources/seed/oss_catalog.json
+@@ -12167,6 +12167,41 @@
+     "allowedHosts": {
+       "hosts": [ "${subdomain}.apilayer.com", "apilayer.com" ]
+     }
++  }, {
++    "sourceDefinitionId": "",
++    "name": "Eventbrite",
++    "dockerRepository": "airbyte/source-eventbrite",
++    "dockerImageTag": "0.1.0",
++    "documentationUrl": "https://docs.airbyte.com/integrations/sources/eventbrite",
++    "icon": "eventbrite.svg",
++    "sourceType": "api",
++    "spec": {
++      "documentationUrl": "https://docs.airbyte.io/integrations/sources/eventbrite",
++      "connectionSpecification": {
++        "title": "Eventbrite Spec",
++        "type": "object",
++        "required": [ "api_key" ],
++        "additionalProperties": true,
++        "properties": {
++          "api_key": {
++            "type": "string",
++            "title": "API Key",
++            "description": "Eventbrite bearer token. See the https://www.eventbrite.com/platform/api#/introduction/authentication for reference",
++            "airbyte_secret": true
++          }
++        }
++      },
++      "supportsNormalization": false,
++      "supportsDBT": false,
++      "supported_destination_sync_modes": [ ]
++    },
++    "tombstone": false,
++    "public": true,
++    "custom": false,
++    "releaseStage": "alpha",
++    "allowedHosts": {
++      "hosts": [ "eventbriteapi.com" ]
++    }
+   }, {
+     "sourceDefinitionId": "6babfc42-c734-4ef6-a817-6eca15f0f9b7",
+     "name": "Everhour",
+diff --git a/airbyte-config-oss/init-oss/src/main/resources/seed/source_definitions.yaml b/airbyte-config-oss/init-oss/src/main/resources/seed/source_definitions.yaml
+index 2a412b1af3..dc4caf2401 100644
+--- a/airbyte-config-oss/init-oss/src/main/resources/seed/source_definitions.yaml
++++ b/airbyte-config-oss/init-oss/src/main/resources/seed/source_definitions.yaml
+@@ -569,6 +569,17 @@
+     hosts:
+       - "${subdomain}.apilayer.com"
+       - apilayer.com
++- name: Eventbrite
++  sourceDefinitionId: abc123
++  dockerRepository: airbyte/source-eventbrite
++  dockerImageTag: 0.1.0
++  documentationUrl: https://docs.airbyte.com/integrations/sources/eventbrite
++  icon: eventbrite.svg
++  sourceType: api
++  releaseStage: alpha
++  allowedHosts:
++    hosts:
++      - eventbriteapi.com
+ - name: Everhour
+   sourceDefinitionId: 6babfc42-c734-4ef6-a817-6eca15f0f9b7
+   dockerRepository: airbyte/source-everhour
+diff --git a/airbyte-config-oss/init-oss/src/main/resources/seed/source_specs.yaml b/airbyte-config-oss/init-oss/src/main/resources/seed/source_specs.yaml
+index 0cf8e995d7..6584dae6c9 100644
+--- a/airbyte-config-oss/init-oss/src/main/resources/seed/source_specs.yaml
++++ b/airbyte-config-oss/init-oss/src/main/resources/seed/source_specs.yaml
+@@ -3947,6 +3947,24 @@
+     supportsNormalization: false
+     supportsDBT: false
+     supported_destination_sync_modes: []
++- dockerImage: "airbyte/source-eventbrite:0.1.0"
++  spec:
++    documentationUrl: "https://docs.airbyte.io/integrations/sources/eventbrite"
++    connectionSpecification:
++      title: "Eventbrite Spec"
++      type: "object"
++      required:
++      - "api_key"
++      additionalProperties: true
++      properties:
++        api_key:
++          type: string
++          title: API Key
++          description: Eventbrite bearer token. See the https://www.eventbrite.com/platform/api#/introduction/authentication for reference
++          airbyte_secret: true
++    supportsNormalization: false
++    supportsDBT: false
++    supported_destination_sync_modes: []
+ - dockerImage: "airbyte/source-everhour:0.1.0"
+   spec:
+     documentationUrl: "https://docs.airbyte.io/integrations/sources/everhour"

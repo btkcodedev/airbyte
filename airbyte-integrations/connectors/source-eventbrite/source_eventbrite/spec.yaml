@@ -1,0 +1,14 @@
+documentationUrl: https://docs.airbyte.com/integrations/sources/eventbrite
+connectionSpecification:
+  $schema: http://json-schema.org/draft-07/schema#
+  title: "Eventbrite Spec"
+  type: "object"
+  required:
+  - "api_key"
+  additionalProperties: true
+  properties:
+    api_key:
+      type: string
+      title: API Key
+      description: Eventbrite bearer token. See the https://www.eventbrite.com/platform/api#/introduction/authentication for reference
+      airbyte_secret: true
