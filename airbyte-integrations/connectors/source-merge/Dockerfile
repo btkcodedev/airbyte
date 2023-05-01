@@ -9,8 +9,10 @@ RUN apk --no-cache upgrade \
     && pip install --upgrade pip \
     && apk --no-cache add tzdata build-base
 
-# install airbyte-cdk
-RUN pip install --prefix=/install airbyte-cdk==0.36.2
+
+COPY setup.py ./
+# install necessary packages to a temporary folder
+RUN pip install --prefix=/install .
 
 # build a clean environment
 FROM base
@@ -26,11 +28,11 @@ RUN echo "Etc/UTC" > /etc/timezone
 RUN apk --no-cache add bash
 
 # copy payload code only
-COPY source_declarative_manifest/main.py ./
+COPY main.py ./
+COPY source_merge ./source_merge
 
 ENV AIRBYTE_ENTRYPOINT "python /airbyte/integration_code/main.py"
 ENTRYPOINT ["python", "/airbyte/integration_code/main.py"]
 
-# needs to be the same as CDK
-LABEL io.airbyte.version=0.36.2
-LABEL io.airbyte.name=airbyte/source-declarative-manifest
+LABEL io.airbyte.version=0.1.0
+LABEL io.airbyte.name=airbyte/source-merge
