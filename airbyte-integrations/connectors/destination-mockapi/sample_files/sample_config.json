@@ -1,0 +1,5 @@
+{
+  "api_url": "https://your-project-id.mockapi.io/api/v1",
+  "batch_size": 100,
+  "timeout": 30
+}

@@ -1,96 +1,128 @@
-# README for Destination MockAPI Connector
+# MockAPI Destination
 
-## Overview
+This is the repository for the MockAPI destination connector, written in Python.
+For information about how to use this connector within Airbyte, see [the documentation](https://docs.airbyte.com/integrations/destinations/mockapi).
 
-The Destination MockAPI Connector is designed to facilitate the integration of data from various Airbyte sources into a mock API provided by [MockAPI](https://mockapi.io/). This connector allows users to map their data into predefined schemas, specifically for users and deals, making it easy to test and simulate API interactions.
+## Local development
 
-## Features
+### Prerequisites
+**To iterate on this connector, make sure to complete this prerequisites section.**
 
-- **Data Mapping**: Supports mapping of data from Airbyte sources into user and deal schemas.
-- **API Interaction**: Handles API requests to MockAPI, allowing for easy data submission.
-- **Configuration Management**: Provides a straightforward way to configure the connector with necessary API settings.
+#### Minimum Python version required `= 3.9`
 
-## Project Structure
-
+#### Build & Activate Virtual Environment and install dependencies
+From this connector directory, create a virtual environment:
 ```
-destination-mockapi
-├── src
-│   └── destination_mockapi
-│       ├── __init__.py
-│       ├── client.py
-│       ├── config.py
-│       ├── destination.py
-│       ├── run.py
-│       ├── writer.py
-│       └── schemas
-│           ├── __init__.py
-│           ├── users.py
-│           └── deals.py
-├── unit_tests
-│   ├── __init__.py
-│   ├── test_mockapi_client.py
-│   ├── test_mockapi_config.py
-│   ├── test_mockapi_destination.py
-│   ├── test_mockapi_writer.py
-│   └── test_schemas.py
-├── integration_tests
-│   └── test_integration.py
-├── acceptance-test-config.yml
-├── main.py
-├── pyproject.toml
-├── poetry.lock
-├── metadata.yaml
-├── icon.svg
-└── README.md
+python -m venv .venv
 ```
 
-## Installation
-
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd destination-mockapi
-   ```
-
-2. Install dependencies using Poetry:
-   ```
-   poetry install
-   ```
-
-## Configuration
-
-Before running the connector, you need to configure the API settings. Update the `acceptance-test-config.yml` file with your MockAPI URL and API key.
-
-## Usage
-
-To run the connector, execute the following command:
+This will generate a virtualenv for this module in `.venv/`. Make sure this venv is active in your
+development environment of choice. To activate it from the terminal, run:
 ```
-python main.py
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-This will start the destination connector and begin processing data from Airbyte sources.
+#### Create credentials
+Create a `secrets/config.json` file with your MockAPI configuration:
+```json
+{
+  "api_url": "https://your-project-id.mockapi.io/api/v1"
+}
+```
+
+### Locally running the connector
+```
+python main.py spec
+python main.py check --config secrets/config.json
+python main.py write --config secrets/config.json --catalog integration_tests/configured_catalog.json
+```
+
+### Locally running the connector docker image
+
+#### Build
+First, make sure you build the latest Docker image:
+```
+docker build . -t airbyte/destination-mockapi:dev
+```
+
+#### Run
+Then run any of the connector commands as follows:
+```
+docker run --rm airbyte/destination-mockapi:dev spec
+docker run --rm -v $(pwd)/secrets:/secrets airbyte/destination-mockapi:dev check --config /secrets/config.json
+docker run --rm -v $(pwd)/secrets:/secrets -v $(pwd)/integration_tests:/integration_tests airbyte/destination-mockapi:dev write --config /secrets/config.json --catalog /integration_tests/configured_catalog.json
+```
+
+## Testing
+Make sure to familiarize yourself with [pytest test discovery](https://docs.pytest.org/en/latest/goodpractices.html#test-discovery) to know how your test files and methods should be named.
+
+First install test dependencies into your virtual environment:
+```
+pip install .[tests]
+```
+
+### Unit Tests
+To run unit tests locally, from the connector directory run:
+```
+python -m pytest unit_tests
+```
 
 ## Testing
 
-### Unit Tests
+You can run full test suite locally using [`airbyte-ci`](https://github.com/airbytehq/airbyte/blob/master/airbyte-ci/connectors/pipelines/README.md):
 
-To run unit tests, use:
+```bash
+airbyte-ci connectors --name=destination-motherduck build
 ```
-pytest unit_tests/
+
+```bash
+airbyte-ci connectors --name=destination-motherduck test
 ```
 
 ### Integration Tests
+There are two types of integration tests: Acceptance Tests and custom integration tests.
 
-To run integration tests, use:
+#### Custom Integration tests
+Place custom tests inside `integration_tests/` folder, then, from the connector directory, run
 ```
-pytest integration_tests/
+python -m pytest integration_tests
 ```
 
-## License
+#### Acceptance Tests
+Customize `acceptance-test-config.yml` file to configure tests. See [Connector Acceptance Tests](https://docs.airbyte.com/connector-development/testing-connectors/connector-acceptance-tests-reference) for more information.
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+If this is a community connector, please make sure to use the latest version of the [Airbyte CDK](https://docs.airbyte.com/connector-development/cdk-python) and set the `acceptance_tests.connection.tests` to `basic_read` only.
 
-## Acknowledgments
+To run acceptance tests locally, from the connector directory, run
+```
+python -m pytest integration_tests -p integration_tests.acceptance
+```
 
-- [Airbyte](https://airbyte.com/) for providing the framework for building connectors.
-- [MockAPI](https://mockapi.io/) for offering a simple way to mock APIs for testing purposes.
+### Using gradle to run tests
+All commands should be run from airbyte project root.
+To run unit tests:
+```
+./gradlew :airbyte-integrations:connectors:destination-mockapi:unitTest
+```
+To run acceptance tests:
+```
+./gradlew :airbyte-integrations:connectors:destination-mockapi:integrationTest
+```
+
+## Dependency Management
+All of this connector's dependencies should go in `setup.py`, NOT `requirements.txt`. The requirements file is only used to connect internal Airbyte dependencies in the monorepo for local development.
+
+We split dependencies between two groups, dependencies that are:
+- required for your connector to work need to go to `MAIN_REQUIREMENTS` list.
+- required for the testing need to go to `TEST_REQUIREMENTS` list
+
+### Publishing a new version of the connector
+You've checked out the repo, implemented a million dollar feature, and you're ready to share your changes with the world. Now what?
+1. Make sure your changes are passing unit and integration tests.
+1. Bump the connector version in `metadata.yaml`: increment the `dockerImageTag` value. Please follow [semantic versioning for connectors](https://docs.airbyte.com/contributing-to-airbyte/resources/pull-requests-handbook/#semantic-versioning-for-connectors).
+1. Make sure the `metadata.yaml` content is up to date.
+1. Make the connector documentation and its changelog is up to date (`docs/integrations/destinations/mockapi.md`).
+1. Create a Pull Request: use [our PR naming conventions](https://docs.airbyte.com/contributing-to-airbyte/resources/pull-requests-handbook/#pull-request-title-convention).
+1. Pat yourself on the back for being an awesome contributor.
+1. Someone from Airbyte will take a look at your PR and iterate with you to merge it into master.

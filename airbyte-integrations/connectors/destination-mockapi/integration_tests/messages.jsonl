@@ -1,0 +1,2 @@
+{"type": "RECORD", "record": {"stream": "users", "data": {"name": "Test User", "avatar": "https://example.com/avatar.jpg"}, "emitted_at": 1635724800000}}
+{"type": "RECORD", "record": {"stream": "deals", "data": {"name": "Test Deal", "avatar": "https://example.com/deal.jpg"}, "emitted_at": 1635724800002}}

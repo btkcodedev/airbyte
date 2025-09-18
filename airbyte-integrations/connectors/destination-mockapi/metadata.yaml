@@ -1,34 +1,37 @@
-name: mockapi
-version: 0.1.0
-description: A destination connector for Airbyte that sends data to a mock API.
-documentation: https://mockapi.io/
-type: destination
-icon: icon.svg
-source_type: airbyte
-destination_type: mockapi
-schemas:
-  - name: users
-    description: Schema for user data
-    fields:
-      - name: id
-        type: integer
-      - name: name
-        type: string
-      - name: email
-        type: string
-  - name: deals
-    description: Schema for deal data
-    fields:
-      - name: id
-        type: integer
-      - name: title
-        type: string
-      - name: amount
-        type: number
-  - name: other_schema
-    description: Additional schema for future use
-    fields:
-      - name: field1
-        type: string
-      - name: field2
-        type: string
+data:
+  connectorSubtype: api
+  connectorType: destination
+  definitionId: 13345678-9abc-def0-1234-56789abcdef0
+  dockerImageTag: 0.1.0
+  dockerRepository: btkcodedev/destination-mockapi
+  githubIssueLabel: destination-mockapi
+  icon: icon.svg
+  license: MIT
+  name: MockAPI
+  registryOverrides:
+    cloud:
+      enabled: true
+    oss:
+      enabled: true
+  releaseStage: alpha
+  documentationUrl: https://docs.airbyte.com/integrations/destinations/mockapi
+  tags:
+    - language:python
+    - cdk:python
+  ab_internal:
+    sl: 100
+    ql: 200
+  supportLevel: community
+  connectorTestSuitesOptions:
+    - suite: unitTests
+    - suite: integrationTests
+    - suite: acceptanceTests
+      testSecrets:
+        - name: SECRET_DESTINATION-MOCKAPI
+          fileName: config.json
+          secretStore:
+            type: GSM
+            alias: secret-store
+  connectorBuildOptions:
+    baseImage: docker.io/airbyte/python-connector-base:2.0.0@sha256:c44839ba84406116e8ba68722a0f30e8f6e7056c726f447681bb9e9ece8bd916
+metadataSpecVersion: "1.0"
